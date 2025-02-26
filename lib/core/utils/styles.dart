@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/core/core.dart';
 
+import 'colors.dart';
+
 
 class TextStyles {
   static const TextStyle appBarTitleStyle = TextStyle(

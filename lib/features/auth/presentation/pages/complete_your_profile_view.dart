@@ -8,6 +8,8 @@ import 'package:recipe_app/features/auth/presentation/widgets/profile_picker.dar
 import 'package:recipe_app/features/auth/presentation/widgets/recipe_bio_field.dart';
 import 'package:recipe_app/features/auth/presentation/widgets/recipe_gender_field.dart';
 
+import '../../../../core/utils/colors.dart';
+
 class CompleteYourProfileView extends StatelessWidget {
   const CompleteYourProfileView({super.key});
 

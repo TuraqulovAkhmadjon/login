@@ -5,12 +5,11 @@ import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/sizes.dart';
 
 class RecipePasswordFormField extends StatelessWidget {
-  const RecipePasswordFormField({
-    super.key,
-    required this.controller,
-    required this.title,
-    required this.validator
-  });
+  const RecipePasswordFormField(
+      {super.key,
+      required this.controller,
+      required this.title,
+      required this.validator});
 
   final TextEditingController controller;
   final String title;
@@ -31,7 +30,7 @@ class RecipePasswordFormField extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 375 ,
+            width: 375,
             child: TextFormField(
               controller: controller,
               maxLines: 1,
@@ -51,7 +50,7 @@ class RecipePasswordFormField extends StatelessWidget {
                 ),
                 filled: true,
                 fillColor: AppColors.pink,
-                hintText: "●●●●●●●",
+                hintText: "●●●●●●● ",
                 hintStyle: TextStyle(
                   letterSpacing: 5,
                   color: AppColors.beigeColor.withValues(alpha: 0.45),

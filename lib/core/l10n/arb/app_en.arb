@@ -1,0 +1,14 @@
+{
+  "signUp": "Sign Up",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "username": "Username",
+  "email": "Email",
+  "phone_number": "Phone Number",
+  "password": "Password",
+  "confirm_password": "Confirm Password",
+  "passwords_do_not_match": "Passwords do not match!",
+  "sign_up_successful": "Sign Up Successful!",
+  "sign_up_success_message": "You have successfully signed up! Welcome!",
+  "login": "Login"
+}

@@ -5,10 +5,8 @@ import 'package:dio/dio.dart';
 import '../features/auth/data/models/user_model.dart';
 
 class ApiClient {
-
   ApiClient() {
-    dio = Dio(
-        BaseOptions(baseUrl: "http://192.168.137.1:8888/api/v1"));
+    dio = Dio(BaseOptions(baseUrl: "http://192.168.9.204:8888/api/v1"));
   }
 
   late final Dio dio;
@@ -29,17 +27,14 @@ class ApiClient {
   Future<bool> uploadProfilePhoto(File file) async {
     FormData fromData = FormData.fromMap(
       {
-        "profilePhoto": await MultipartFile.fromFile(
-            file.path, filename: file.path
-            .split('/')
-            .last)
+        "profilePhoto": await MultipartFile.fromFile(file.path,
+            filename: file.path.split('/').last)
       },
     );
 
-    var response = await dio.patch(
-        '/auth/upload', data: fromData, options: Options(headers: {
-      "Content-Type": "multipart/from-data"
-    }));
+    var response = await dio.patch('/auth/upload',
+        data: fromData,
+        options: Options(headers: {"Content-Type": "multipart/from-data"}));
 
     if (response.statusCode == 200) {
       return true;
@@ -48,6 +43,7 @@ class ApiClient {
   }
 
   Future<bool> signUp(UserModel model) async {
+    print("nimadir00");
     var response = await dio.post(
       '/auth/register',
       data: model.toJson(),
@@ -59,5 +55,12 @@ class ApiClient {
     }
   }
 
-
+  Future<List<dynamic>> fetchCatigories() async {
+    var response = await dio.get('/categories/list');
+    if (response.statusCode == 200) {
+      List<dynamic> data = response.data;
+    } else {
+      throw Exception("Failed to load my profile data");
+    }
+  }
 }
