@@ -55,12 +55,25 @@ class ApiClient {
     }
   }
 
-  Future<List<dynamic>> fetchCatigories() async {
+  Future<List<dynamic>> fetchCategories() async {
     var response = await dio.get('/categories/list');
     if (response.statusCode == 200) {
       List<dynamic> data = response.data;
+      return data;
     } else {
       throw Exception("Failed to load my profile data");
     }
+  }
+  Future<dynamic>fetchRecipe(recipeId)async {
+    var response = await dio.get('/recipes/detail/$recipeId');
+    if (response.statusCode ==200) {
+      dynamic data =response.data;
+      return data;
+      
+    } else{
+      throw Exception("ma'lumot yuq");
+    }
+
+   
   }
 }
