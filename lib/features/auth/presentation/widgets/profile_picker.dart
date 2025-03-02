@@ -30,16 +30,21 @@ class ProfilePicker extends StatelessWidget {
                 borderRadius: BorderRadius.circular(50),
               ),
               child: file == null
-                  ? Image.asset("assets/myassets/profile.png")
+                  ? SvgPicture.asset(
+                "assets/icons/profile.svg", color: AppColors.redPinkMain,
+                width: 70,
+                height: 70,
+                fit: BoxFit.cover,
+              )
                   : ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image.file(
-                        file,
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                borderRadius: BorderRadius.circular(50),
+                child: Image.file(
+                  file,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             Align(
               alignment: Alignment.bottomRight,
@@ -56,7 +61,7 @@ class ProfilePicker extends StatelessWidget {
                     color: AppColors.redPinkMain,
                   ),
                   child: SvgPicture.asset(
-                    "assets/myassets/edit.svg",
+                    "assets/icons/edit.svg",
                     fit: BoxFit.cover,
                   ),
                 ),

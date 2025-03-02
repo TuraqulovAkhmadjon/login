@@ -41,13 +41,13 @@ class CategoriesBottomNavBar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   RecipeIconButton(
-                    image: "assets/icons/massages.svg", callback: () {},),
+                    image: "assets/icons/home.svg", callback: () {},),
                   RecipeIconButton(
                     image: "assets/icons/massages.svg", callback: () {},),
                   RecipeIconButton(
-                    image: "assets/icons/massages.svg", callback: () {},),
+                    image: "assets/icons/categories.svg", callback: () {},),
                   RecipeIconButton(
-                    image: "assets/icons/massages.svg", callback: () {},)
+                    image: "assets/icons/profile.svg", callback: () {},)
 
                 ],
               ),

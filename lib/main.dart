@@ -2,17 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_app/catigories/data/repositories/repository.dart';
-import 'package:recipe_app/catigories/presentation/widgets/category_item.dart';
-import 'package:recipe_app/catigories/presentation/widgets/categoties_view.dart';
-import 'package:recipe_app/core/core.dart';
-import 'package:recipe_app/features/auth/data/repositories/auth_repository.dart';
-import 'package:recipe_app/features/auth/presentation/pages/login_view.dart';
-import 'package:recipe_app/features/auth/presentation/pages/sign_up_view.dart';
-import 'catigories/data/models/categories_view_model.dart';
 import 'core/client.dart';
 import 'core/l10n/app_localizations.dart';
 import 'core/utils/theme.dart';
+import 'features/auth/data/repositories/auth_repository.dart';
+import 'core/routes.dart';
 
 void main() {
   runApp(
@@ -70,20 +64,4 @@ class LocalizationViewModel extends ChangeNotifier {
   }
 }
 
-GoRouter router = GoRouter(
-  initialLocation: '/login',
-  routes: [
-    GoRoute(path: '/login', builder: (context, state) => const LoginView()),
-    GoRoute(path: '/signUp', builder: (context, state) => const SignUpView()),
-    GoRoute(
-      path: '/categories/list',
-      builder: (context, state) => CategoriesView(
-        vm: CategoriesViewModel(
-          categoriesRepo: CategoriesRepository(
-            client: ApiClient(),
-          ),
-        ),
-      ),
-    ),
-  ],
-);
+

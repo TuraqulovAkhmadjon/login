@@ -6,7 +6,7 @@ import '../features/auth/data/models/user_model.dart';
 
 class ApiClient {
   ApiClient() {
-    dio = Dio(BaseOptions(baseUrl: "http://192.168.9.204:8888/api/v1"));
+    dio = Dio(BaseOptions(baseUrl: "http://192.168.8.101:8888/api/v1"));
   }
 
   late final Dio dio;
@@ -69,11 +69,11 @@ class ApiClient {
     if (response.statusCode ==200) {
       dynamic data =response.data;
       return data;
-      
+
     } else{
       throw Exception("ma'lumot yuq");
     }
 
-   
+
   }
 }
