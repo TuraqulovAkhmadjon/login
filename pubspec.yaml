@@ -43,6 +43,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   easy_localization: ^3.0.7+1
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:

@@ -5,12 +5,12 @@ import '../repositories/recipe_repository.dart';
 
 class RecipeDetailViewModel extends ChangeNotifier {
   RecipeDetailViewModel({
-    required RecipeRepository recipeRepo,
+    required RecipeDetailRepository recipeRepo,
     required this.recipeId,
   }) : _recipeRepo = recipeRepo {
     load();
   }
-  final RecipeRepository _recipeRepo;
+  final RecipeDetailRepository _recipeRepo;
 
   bool isLoading = true;
   final int recipeId;

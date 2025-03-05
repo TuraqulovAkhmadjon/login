@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:recipe_app/catigories/presentation/widgets/categories_bottom_nav_bar.dart';
-import 'package:recipe_app/features/recipe_detail/data/models/recipe_detail_view_model.dart';
 
-import '../../../../catigories/presentation/widgets/app_bar_circular_container.dart';
-import '../../../../catigories/presentation/widgets/categories_app_bar.dart';
+
+
+import '../../../catigories/presentation/widgets/app_bar_circular_container.dart';
+import '../../../catigories/presentation/widgets/categories_bottom_nav_bar.dart';
+import '../../data/models/recipe_detail_view_model.dart';
 
 class RecipeDetailView extends StatelessWidget {
   const RecipeDetailView({super.key

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:recipe_app/core/dependencies.dart';
 import 'core/client.dart';
 import 'core/l10n/app_localizations.dart';
 import 'core/utils/theme.dart';
@@ -23,28 +25,31 @@ void main() {
   );
 }
 
-class RecipeApp extends StatelessWidget {
+class RecipeApp  extends StatelessWidget {
   const RecipeApp({super.key});
 
-  @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: Size(430, 932));
     return Consumer<LocalizationViewModel>(
-      builder: (context, localization, child) {
-        return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          theme: appThemeData,
-          routerConfig: router,
-          locale: localization.currentLocale,
-          supportedLocales: const [
-            Locale("uz"),
-            Locale("en"),
-          ],
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            MyLocalizations.delegate,
-          ],
+       builder: (context, localization, child) {
+        return MultiProvider(
+          providers: providers,
+          builder: (context, child) => MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            theme: appThemeData,
+            routerConfig: router,
+            locale: localization.currentLocale,
+            supportedLocales: const [
+              Locale("uz"),
+              Locale("en"),
+            ],
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              MyLocalizations.delegate,
+            ],
+          ),
         );
       },
     );
@@ -63,5 +68,3 @@ class LocalizationViewModel extends ChangeNotifier {
     }
   }
 }
-
-

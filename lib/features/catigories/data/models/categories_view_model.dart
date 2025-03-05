@@ -4,7 +4,7 @@ import '../repositories/repository.dart';
 import 'categories_model.dart';
 
 class CategoriesViewModel extends ChangeNotifier {
-  CategoriesViewModel({required CategoriesRepository categoriesRepo})
+  CategoriesViewModel({required CategoriesRepository categoriesRepo, required catRepo})
       : _categoriesRepo = categoriesRepo {
     load();
   }

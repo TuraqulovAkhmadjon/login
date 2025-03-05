@@ -5,18 +5,31 @@ import 'package:go_router/go_router.dart';
 import 'app_bar_circular_container.dart';
 
 class RecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const RecipeAppBar({
+  const
+  RecipeAppBar({
     super.key,
     required this.title,
+    this.bottom,
+    this.toolbarHeight = 72,
   });
 
   final String title;
+  final double toolbarHeight;
+  final PreferredSizeWidget? bottom;
 
   @override
+  Size get preferredSize {
+    final double? bottomHeight = bottom?.preferredSize.height;
+    final height =
+    bottomHeight == null ? toolbarHeight : bottomHeight + toolbarHeight;
+    return Size(double.infinity, height);
+  }
+
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: 36,vertical: 10),
       child: AppBar(
+        toolbarHeight: toolbarHeight,
         leading: Align(
           alignment: Alignment.centerLeft,
           child: IconButton(
@@ -52,10 +65,8 @@ class RecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ],
+        bottom: bottom,
       ),
     );
   }
-
-  @override
-  Size get preferredSize => const Size(double.infinity, 72);
 }

@@ -1,12 +1,10 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
-
 import '../features/auth/data/models/user_model.dart';
 
 class ApiClient {
   ApiClient() {
-    dio = Dio(BaseOptions(baseUrl: "http://192.168.8.101:8888/api/v1"));
+    dio = Dio(BaseOptions(baseUrl: "http://172.20.10.2:8888/api/v1"));
   }
 
   late final Dio dio;
@@ -16,64 +14,69 @@ class ApiClient {
       '/auth/login',
       data: {"login": login, "password": password},
     );
+
     if (response.statusCode == 200) {
-      Map<String, String> data = Map<String, String>.from(response.data);
-      return data['accessToken']!;
+      return response.data['accessToken'] ??
+          (throw Exception("Token topilmadi!"));
     } else {
       throw Exception("Login qilib bo'lmadi!");
     }
   }
 
   Future<bool> uploadProfilePhoto(File file) async {
-    FormData fromData = FormData.fromMap(
-      {
-        "profilePhoto": await MultipartFile.fromFile(file.path,
-            filename: file.path.split('/').last)
-      },
+    FormData formData = FormData.fromMap({
+      "profilePhoto": await MultipartFile.fromFile(
+        file.path,
+        filename: file.path.split('/').last,
+      )
+    });
+
+    var response = await dio.patch(
+      '/auth/upload',
+      data: formData,
+      options: Options(headers: {"Content-Type": "multipart/form-data"}),
     );
 
-    var response = await dio.patch('/auth/upload',
-        data: fromData,
-        options: Options(headers: {"Content-Type": "multipart/from-data"}));
-
-    if (response.statusCode == 200) {
-      return true;
-    }
-    return false;
+    return response.statusCode == 200;
   }
 
   Future<bool> signUp(UserModel model) async {
-    print("nimadir00");
     var response = await dio.post(
       '/auth/register',
       data: model.toJson(),
     );
-    if (response.statusCode == 201) {
-      return true;
-    } else {
-      return false;
-    }
+
+    return response.statusCode == 201;
   }
 
   Future<List<dynamic>> fetchCategories() async {
     var response = await dio.get('/categories/list');
+
     if (response.statusCode == 200) {
-      List<dynamic> data = response.data;
-      return data;
+      return List<dynamic>.from(response.data);
     } else {
-      throw Exception("Failed to load my profile data");
+      throw Exception("Kategoriya ma'lumotlari yuklanmadi!");
     }
   }
-  Future<dynamic>fetchRecipe(recipeId)async {
+
+  Future<Map<String, dynamic>> fetchRecipe(int recipeId) async {
     var response = await dio.get('/recipes/detail/$recipeId');
-    if (response.statusCode ==200) {
-      dynamic data =response.data;
-      return data;
 
-    } else{
-      throw Exception("ma'lumot yuq");
+    if (response.statusCode == 200) {
+      return Map<String, dynamic>.from(response.data);
+    } else {
+      throw Exception("Retsept topilmadi!");
     }
+  }
 
+  Future<List<dynamic>> fetchRecipesByCategories(int categoryId) async {
+    var response = await dio.get('/recipes/list?category=$categoryId');
 
+    if (response.statusCode == 200) {
+      return List<dynamic>.from(response.data);
+    } else {
+      throw Exception(
+          "Kategoriya ($categoryId) bo‘yicha retseptlar topilmadi!");
+    }
   }
 }

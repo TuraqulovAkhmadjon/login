@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:recipe_app/catigories/presentation/widgets/recipe_icon_button.dart';
+import 'package:recipe_app/features/catigories/presentation/widgets/recipe_icon_button.dart';
 
 class CategoriesBottomNavBar extends StatelessWidget {
   const CategoriesBottomNavBar({

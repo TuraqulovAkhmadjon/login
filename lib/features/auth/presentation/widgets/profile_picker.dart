@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_app/core/core.dart';
 import 'package:recipe_app/features/auth/presentation/manager/complete_profile_view_model.dart';
 
 import '../../../../core/utils/colors.dart';

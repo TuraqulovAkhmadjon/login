@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_app/core/core.dart';
 
 import '../../../../core/utils/colors.dart';
 import '../manager/complete_profile_view_model.dart';

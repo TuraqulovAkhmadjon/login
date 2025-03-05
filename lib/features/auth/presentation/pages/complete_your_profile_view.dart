@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_app/core/core.dart';
 import 'package:recipe_app/core/widgets/recipe_elevated_button2.dart';
 import 'package:recipe_app/features/auth/presentation/manager/complete_profile_view_model.dart';
 import 'package:recipe_app/features/auth/presentation/widgets/complete_profile_desc.dart';

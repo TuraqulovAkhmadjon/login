@@ -1,8 +1,8 @@
 import 'package:recipe_app/core/client.dart';
 import 'package:recipe_app/features/recipe_detail/data/models/recipe_detail_model.dart';
 
-class RecipeRepository {
-  RecipeRepository({required this.client});
+class RecipeDetailRepository {
+  RecipeDetailRepository({required this.client});
 
   final ApiClient client;
 

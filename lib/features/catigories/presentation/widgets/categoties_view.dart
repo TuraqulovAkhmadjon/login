@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app/catigories/presentation/widgets/categories_bottom_nav_bar.dart';
 import 'package:recipe_app/core/utils/sizes.dart';
 import '../../data/models/categories_view_model.dart';
 import 'categories_app_bar.dart';
+import 'categories_bottom_nav_bar.dart';
 import 'category_item.dart';
 import 'main_categories_item.dart';
 
