@@ -6,8 +6,8 @@ import 'instructions_model.dart';
 class RecipeDetailModel {
   final int id, category, timeRequired;
   final String title, description, photo, videoRecipe;
-  final double rating;
-  final List<RecipeDetailUserModel> userModel;
+  final num rating;
+  final RecipeDetailUserModel userModel;
   final List<InstructionsModel> instructionsModel;
   final List<IngredientsModel> ingredientsModel;
 
@@ -27,16 +27,16 @@ class RecipeDetailModel {
   factory RecipeDetailModel.fromJson(Map<String, dynamic> json) {
     return RecipeDetailModel(
       id: json["id"],
-      category: json["category"],
+      category: json["categoryId"],
       timeRequired: json["timeRequired"],
       title: json["title"],
       description: json["description"],
       photo: json["photo"],
       videoRecipe: json["videoRecipe"],
       rating: json["rating"],
-      userModel: json["userModel"],
-      ingredientsModel: json["ingredientsModel"],
-      instructionsModel: json["instructionsModel"],
+      userModel: RecipeDetailUserModel.fromJson(json["user"]),
+      ingredientsModel: (json["ingredients"] as List<dynamic>).map((ingredient)=>IngredientsModel.fromJson(ingredient)).toList(),
+      instructionsModel: (json["instructions"] as List<dynamic>).map((instruction)=>InstructionsModel.fromJson(instruction)).toList(),
     );
   }
 }

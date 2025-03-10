@@ -4,7 +4,7 @@ import '../features/auth/data/models/user_model.dart';
 
 class ApiClient {
   ApiClient() {
-    dio = Dio(BaseOptions(baseUrl: "http://172.20.10.2:8888/api/v1"));
+    dio = Dio(BaseOptions(baseUrl: "http://192.168.8.227:8888/api/v1"));
   }
 
   late final Dio dio;
@@ -59,6 +59,23 @@ class ApiClient {
     }
   }
 
+  Future<List<dynamic>>fetchTrendingRecipe()async{
+    var response =await dio.get('/recipes/trending-recipe');
+    if (response.statusCode ==200){
+      return List<dynamic>.from(response.data);
+    }else{
+      throw Exception("Ma'lumot kelmayapti");
+    }
+  }
+  Future <List <dynamic>>fetchYourRecipes()async{
+    var response =await dio.get('/recipes/list?Limit=2');
+    if (response.statusCode==200){
+      return List<dynamic>.from(response.data);
+    }else {
+      throw Exception("Ma'lumot topilmadi");
+    }
+  }
+
   Future<Map<String, dynamic>> fetchRecipe(int recipeId) async {
     var response = await dio.get('/recipes/detail/$recipeId');
 
@@ -67,6 +84,15 @@ class ApiClient {
     } else {
       throw Exception("Retsept topilmadi!");
     }
+  }
+  Future<List<dynamic>> fetchCommunity(int? limit, String order, bool descending)async{
+    var response =  await dio.get('/recipes/community/list?Limit=$limit&Order=$order&Descending=$descending');
+   if (response.statusCode==200){
+     List<dynamic> data = response.data;
+     return data;
+   }else{
+     throw Exception("malumot kelmadi communitydan");
+   }
   }
 
   Future<List<dynamic>> fetchRecipesByCategories(int categoryId) async {

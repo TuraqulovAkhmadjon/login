@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
-import 'package:recipe_app/features/recipe_detail/data/models/recipe_detail_model.dart';
 
-import '../repositories/recipe_repository.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:recipe_app/features/recipe_detail/data/repositories/recipe_repository.dart';
+
+import '../../data/models/recipe_detail_model.dart';
 
 class RecipeDetailViewModel extends ChangeNotifier {
   RecipeDetailViewModel({
@@ -10,18 +11,17 @@ class RecipeDetailViewModel extends ChangeNotifier {
   }) : _recipeRepo = recipeRepo {
     load();
   }
-  final RecipeDetailRepository _recipeRepo;
 
+  final RecipeDetailRepository _recipeRepo;
   bool isLoading = true;
   final int recipeId;
 
-   RecipeDetailModel? recipe;
+  late final RecipeDetailModel recipe;
 
   Future<void> load() async {
     isLoading = true;
     notifyListeners();
-
-    recipe = await _recipeRepo.fetchRecipeById((recipeId));
+    recipe = await _recipeRepo.fetchRecipeById(recipeId);
     isLoading = false;
     notifyListeners();
   }

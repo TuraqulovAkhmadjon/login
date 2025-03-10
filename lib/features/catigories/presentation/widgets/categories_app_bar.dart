@@ -5,29 +5,31 @@ import 'package:go_router/go_router.dart';
 import 'app_bar_circular_container.dart';
 
 class RecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const
-  RecipeAppBar({
+  const RecipeAppBar({
     super.key,
     required this.title,
     this.bottom,
     this.toolbarHeight = 72,
+    this.actions,
   });
 
   final String title;
   final double toolbarHeight;
   final PreferredSizeWidget? bottom;
+  final List<Widget>? actions;
 
   @override
   Size get preferredSize {
     final double? bottomHeight = bottom?.preferredSize.height;
     final height =
-    bottomHeight == null ? toolbarHeight : bottomHeight + toolbarHeight;
+        bottomHeight == null ? toolbarHeight : bottomHeight + toolbarHeight;
     return Size(double.infinity, height);
   }
 
+  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 36,vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: AppBar(
         toolbarHeight: toolbarHeight,
         leading: Align(
@@ -47,26 +49,30 @@ class RecipeAppBar extends StatelessWidget implements PreferredSizeWidget {
         centerTitle: true,
         title: Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w600,
           ),
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                AppBarCircularContainer(image: "assets/icons/notification.svg"),
-                SizedBox(width: 8),
-                AppBarCircularContainer(image: "assets/icons/search.svg"),
-              ],
-            ),
-          ),
-        ],
+        actions: actions ?? _defaultActions(),
         bottom: bottom,
       ),
     );
+  }
+
+  List<Widget> _defaultActions() {
+    return [
+      const Padding(
+        padding: EdgeInsets.all(15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppBarCircularContainer(image: "assets/icons/notification.svg"),
+            SizedBox(width: 8),
+            AppBarCircularContainer(image: "assets/icons/search.svg"),
+          ],
+        ),
+      ),
+    ];
   }
 }

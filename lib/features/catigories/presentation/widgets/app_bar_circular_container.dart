@@ -26,7 +26,7 @@ class AppBarCircularContainer extends StatelessWidget {
         icon: SvgPicture.asset(
           image,
           width: 15,
-          fit: BoxFit.none,
+          fit: BoxFit.cover
         ),
       ),
     );

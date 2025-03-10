@@ -2,6 +2,11 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_app/features/category_detail/data/repositories/recipe_repository.dart';
 import 'package:recipe_app/features/category_detail/presentation/manager/category_detail_view_model.dart';
+import 'package:recipe_app/features/recipe_community/presentation/manager/recipe_community_view_model.dart';
+import 'package:recipe_app/features/recipe_community/presentation/pages/recipe_community_view.dart';
+import 'package:recipe_app/features/recipe_detail/presentation/pages/recipe_detail_view.dart';
+import 'package:recipe_app/features/recipe_home/presentation/manager/recipe_home_view_model.dart';
+import 'package:recipe_app/features/recipe_home/presentation/pages/recipe_home_view.dart';
 import '../features/auth/presentation/pages/complete_your_profile_view.dart';
 import '../features/auth/presentation/pages/login_view.dart';
 import '../features/auth/presentation/pages/sign_up_view.dart';
@@ -11,47 +16,54 @@ import '../features/catigories/data/repositories/repository.dart';
 import '../features/catigories/presentation/widgets/categoties_view.dart';
 import '../features/recipe_detail/data/models/recipe_detail_view_model.dart';
 import '../features/recipe_detail/data/repositories/recipe_repository.dart';
-import '../features/recipe_detail/presentation/widgets/recipe_detail_view.dart';
 import 'client.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: '/category-detail',
+  initialLocation: '/recipes_community',
   routes: [
-    // GoRoute(
-    //     path: '/profile',
-    //     builder: (context, state) => ProfileView(
-    //         viewModel: ProfileViewModel(
-    //             repo: ProfileRepository(client: context.read())))),
     GoRoute(path: '/login', builder: (context, state) => LoginView()),
     GoRoute(path: '/signUp', builder: (context, state) => SignUpView()),
     GoRoute(
-        path: '/completeProfile',
-        builder: (context, state) => CompleteYourProfileView()),
-    // GoRoute(
-    //   path: '/categories/list',
-    //   builder: (context, state) => CategoriesView(
-    //       vm: CategoriesViewModel(
-    //           categoriesRepo: CategoriesRepository(
-    //             client: ApiClient(),
-    //           ),
-    //           catRepo: null)),
-    // ),
+      path: '/completeProfile',
+      builder: (context, state) => CompleteYourProfileView(),
+    ),
     GoRoute(
       path: '/category-detail',
       builder: (context, state) => CategoryDetailView(
         vm: CategoryDetailViewModel(
-          catRepo: CategoriesRepository(client: ApiClient()),
+          catRepo: context.read(),
           recipeRepo: RecipesRepository(client: ApiClient()),
         )..load(),
       ),
     ),
-
     GoRoute(
-      path: '/recipe-detail',
-      builder: (context, state) => RecipeDetailView(
-        vm: RecipeDetailViewModel(
-            recipeRepo: RecipeDetailRepository(client: context.read()),
-            recipeId: 1),
+      path: '/home',
+      builder: (context, state) => RecipeHomeView(
+        vm: RecipeHomeViewModel(
+          catRepo: CategoriesRepository(client: ApiClient()),
+          recipeRepo: RecipesRepository(client: ApiClient()),
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/recipes_community',
+      builder: (context, state) => RecipeCommunityView(
+        vm: RecipeCommunityViewModel(
+          limit: 80,
+          order: 'rating',
+          descending: true,
+          communityRepo: context.read(),
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/recipe-detail/:recipeId',
+      builder: (context, state) => ChangeNotifierProvider(
+        create: (context) => RecipeDetailViewModel(
+          recipeRepo: context.read(),
+          recipeId: int.parse(state.pathParameters['recipeId']!),
+        ),
+        child: RecipeDetailView(),
       ),
     ),
   ],

@@ -14,8 +14,8 @@ class RecipeDetailUserModel {
     return RecipeDetailUserModel(
         id: json["id"],
         profilePhoto: json["profilePhoto"],
-        firstname: json["firstname"],
-        lastname: json["lastname"],
+        firstname: json["firstName"],
+        lastname: json["lastName"],
         username: json["username"]);
   }
 }
