@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:recipe_app/features/category_detail/data/repositories/recipe_repository.dart';
@@ -11,12 +12,14 @@ import '../features/auth/presentation/pages/complete_your_profile_view.dart';
 import '../features/auth/presentation/pages/login_view.dart';
 import '../features/auth/presentation/pages/sign_up_view.dart';
 import '../features/category_detail/presentation/pages/category_detail_view.dart';
-import '../features/catigories/data/models/categories_view_model.dart';
+import '../features/catigories/presentation/manager/categories_view_model.dart';
 import '../features/catigories/data/repositories/repository.dart';
 import '../features/catigories/presentation/widgets/categoties_view.dart';
 import '../features/recipe_detail/data/models/recipe_detail_view_model.dart';
 import '../features/recipe_detail/data/repositories/recipe_repository.dart';
 import 'client.dart';
+
+final apiClient = ApiClient();
 
 GoRouter router = GoRouter(
   initialLocation: '/recipes_community',
@@ -45,17 +48,24 @@ GoRouter router = GoRouter(
         ),
       ),
     ),
+    // GoRoute(
+    //   path: '/categories',
+    //   builder: (context, state) => BlocProvider(
+    //       create: (context) => CategoriesCubit(
+    //             categoriesRepo: context.read<CategoriesRepository>(),
+    //           ),
+    //           child: CategoriesView()),
+    // ),
     GoRoute(
       path: '/recipes_community',
-      builder: (context, state) => RecipeCommunityView(
-        vm: RecipeCommunityViewModel(
-          limit: 80,
-          order: 'rating',
-          descending: true,
-          communityRepo: context.read(),
+      builder: (context, state) => ChangeNotifierProvider(
+        create: (context) => RecipeCommunityViewModel(communityRepo: context.read()),
+        child: RecipeCommunityView(
+
+          ),
         ),
       ),
-    ),
+
     GoRoute(
       path: '/recipe-detail/:recipeId',
       builder: (context, state) => ChangeNotifierProvider(
