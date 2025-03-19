@@ -1,0 +1,14 @@
+{
+  "signUp": "Ro‘yxatdan o‘tish",
+  "first_name": "Ism",
+  "last_name": "Familiya",
+  "username": "Foydalanuvchi nomi",
+  "email": "Elektron pochta",
+  "phone_number": "Telefon raqam",
+  "password": "Maxfiy so'z",
+  "confirm_password": "Maxfiy so'zni tasdiqlang",
+  "passwords_do_not_match": "Parollar mos kelmadi!",
+  "sign_up_successful": "Ro‘yxatdan o‘tish muvaffaqiyatli!",
+  "sign_up_success_message": "Siz muvaffaqiyatli ro‘yxatdan o‘tdingiz! Xush kelibsiz!",
+  "login":"Kirish"
+}
