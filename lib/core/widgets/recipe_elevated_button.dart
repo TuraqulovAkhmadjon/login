@@ -8,6 +8,7 @@ class RecipeElevatedButton extends StatelessWidget {
   });
 
   final String text;
+
   final VoidCallback callback;
 
   @override

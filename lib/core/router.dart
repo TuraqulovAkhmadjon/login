@@ -12,6 +12,7 @@ import 'package:recipe_app/features/recipe_home/presentation/pages/recipe_home_v
 import 'package:recipe_app/features/review/presentation/manager/created_review/create_review_bloc.dart';
 import 'package:recipe_app/features/review/presentation/manager/reviews/review_bloc.dart';
 import 'package:recipe_app/features/review/presentation/pages/create_review_view.dart';
+import 'package:recipe_app/features/top_chef/presentation/pages/top_chef_profile.dart';
 import '../features/auth/presentation/pages/complete_your_profile_view.dart';
 import '../features/auth/presentation/pages/login_view.dart';
 import '../features/auth/presentation/pages/sign_up_view.dart';
@@ -28,7 +29,7 @@ import 'client.dart';
 final apiClient = ApiClient();
 
 GoRouter router = GoRouter(
-  initialLocation: '/trending_recipes',
+  initialLocation: '/top_chefs',
   // Routes.getReview(2),
   routes: [
     GoRoute(path: '/login', builder: (context, state) => LoginView()),
@@ -87,6 +88,8 @@ GoRouter router = GoRouter(
       ),
     ),
     GoRoute(path: '/trending_recipes',builder: (context,state)=> TrendingRecipesView()),
+
+    GoRoute(path: '/top_chefs',builder: (context,state)=>TopChefProfileView()),
 
     GoRoute(
       path: '/recipe-detail/:recipeId',
