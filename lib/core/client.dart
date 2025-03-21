@@ -59,6 +59,15 @@ class ApiClient {
     }
   }
 
+  Future<List<dynamic>> fetchTopChefsForHome({int? limit}) async {
+    final response = await dio.get('/auth/top-chefs?Limit=${limit ?? ''}');
+    if (response.statusCode == 200) {
+      return response.data as List<dynamic>;
+    } else {
+      throw Exception("/auth/top-chefs?Limit=${limit ?? ''} so'rovimiz xato ketti");
+    }
+  }
+
   Future<List<dynamic>> fetchTrendingRecipe() async {
     var response = await dio.get('/recipes/trending-recipe');
     if (response.statusCode == 200) {
@@ -84,6 +93,15 @@ class ApiClient {
       return Map<String, dynamic>.from(response.data);
     } else {
       throw Exception("Retsept topilmadi!");
+    }
+  }
+  Future<Map<String,dynamic>>fetchTrendingRecipes()async{
+    var response=await dio.get('/recipes/trending-recipe');
+    if (response.statusCode==200) {
+      return Map<String,dynamic>.from(response.data);
+
+    }  else{
+      throw Exception('Malumot yuq');
     }
   }
 
@@ -129,6 +147,8 @@ print("malumot ${response.data}");
       return false;
     }
   }
+
+
 
   Future<List<dynamic>> fetchCommunity(
       int? limit, String order, bool descending) async {

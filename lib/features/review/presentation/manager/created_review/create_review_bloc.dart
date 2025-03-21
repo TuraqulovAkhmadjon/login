@@ -18,9 +18,12 @@ class CreateReviewBloc extends Bloc<CreateReviewEvent, CreateReviewState> {
         ) {
     on<CreateReviewRate>(_onRate);
     on<CreateReviewPickImage>(_onPickImage);
-    on<UpdateApprovalStatus>(_onUpdateApprovalStatus);
-    on<PostReviewEvent>(_postReviewComment);
+
   }
+  // Future _onLoad(CreateReviewLoading event,Emitter<CreateReviewState>emit)async{
+  //   emit(state.copyWith(status: CreateReviewStatus.loading,recipeId: event.recipeId));
+  //   final recipe = await
+  // }
 
   Future<void> _onRate(
       CreateReviewRate event, Emitter<CreateReviewState> emit) async {
@@ -39,19 +42,5 @@ class CreateReviewBloc extends Bloc<CreateReviewEvent, CreateReviewState> {
     }
   }
 
-  Future<void> _onUpdateApprovalStatus(
-      UpdateApprovalStatus event, Emitter<CreateReviewState> emit) async {
-    emit(state.copyWith(isApproved: event.isApproved));
-  }
 
-  Future<void> _postReviewComment(
-      PostReviewEvent event, Emitter<CreateReviewState> emit) async {
-    final result = await _recipeRepo.postReviewComment(
-        event.recipeId, event.comment, event.rating, event.file);
-    if (result) {
-      emit(state.copyWith(status: CreateReviewStatus.idle));
-    } else {
-      emit(state.copyWith(status: CreateReviewStatus.error));
-    }
-  }
 }

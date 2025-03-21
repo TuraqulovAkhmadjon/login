@@ -1,7 +1,7 @@
 import 'package:recipe_app/core/client.dart';
 import 'package:recipe_app/features/category_detail/data/models/recipe_model.dart';
 
-import '../../../review/data/models/review_model.dart';
+import '../../../review/data/models/review_user_model.dart';
 
 class RecipeRepository {
   RecipeRepository({required this.client});

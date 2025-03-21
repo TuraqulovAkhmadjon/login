@@ -2,6 +2,12 @@ part of 'create_review_bloc.dart';
 
 sealed class CreateReviewEvent {}
 
+final class CreateReviewLoading extends CreateReviewEvent {
+  final int recipeId;
+
+  CreateReviewLoading({required this.recipeId});
+}
+
 final class CreateReviewLoad extends CreateReviewEvent {
   final int recipeId;
 
@@ -16,19 +22,11 @@ final class CreateReviewRate extends CreateReviewEvent {
 
 final class CreateReviewPickImage extends CreateReviewEvent {}
 
-final class UpdateApprovalStatus extends CreateReviewEvent {
-  final bool isApproved;
+final class CreateReviewRecommendOrNot extends CreateReviewEvent {
+  final bool value;
 
-  UpdateApprovalStatus({required this.isApproved});
+  CreateReviewRecommendOrNot({required this.value});
 }
 
-final class PostReviewEvent extends CreateReviewEvent {
-  final int recipeId;
-  final int rating;
-  final String comment;
-  final File file;
-
-  PostReviewEvent(
-      {required this.rating, required this.comment, required this.file, required this.recipeId});
-
-}
+final class CreateReviewSubmit extends CreateReviewEvent {}
+//b/o'ldi

@@ -2,14 +2,14 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:recipe_app/features/review/data/models/review_comment_model.dart';
 
-import '../../../data/models/review_model.dart';
+import '../../../data/models/review_user_model.dart';
 
 enum ReviewsStatus { idle, loading, error }
 
 @immutable
 class ReviewsState extends Equatable {
   final ReviewsStatus status;
-  final ReviewModel? reviewModel;
+  final Review_user_Model? reviewModel;
   final List<ReviewCommentModel>? comment;
 
   const ReviewsState({
@@ -19,7 +19,7 @@ class ReviewsState extends Equatable {
   });
 
   ReviewsState copyWith({
-    ReviewModel? recipeModel,
+    Review_user_Model? recipeModel,
    List <ReviewCommentModel>? comment,
     ReviewsStatus? status,
   }) {

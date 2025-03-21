@@ -1,6 +1,6 @@
 import 'package:recipe_app/features/recipe_detail/data/models/recipe_detail_user_model.dart';
 
-class ReviewModel {
+class Review_user_Model {
   final int id;
   final String title;
   final String photo;
@@ -9,7 +9,7 @@ class ReviewModel {
 
   final RecipeDetailUserModel userModel;
 
-  ReviewModel({
+  Review_user_Model({
     required this.id,
     required this.title,
     required this.photo,
@@ -19,8 +19,8 @@ class ReviewModel {
     required this.userModel,
   });
 
-  factory ReviewModel.fromJson(Map<String, dynamic> json) {
-    return ReviewModel(
+  factory Review_user_Model.fromJson(Map<String, dynamic> json) {
+    return Review_user_Model(
       id: json["id"],
       title: json["title"],
       photo: json["photo"],

@@ -5,20 +5,20 @@ import 'package:recipe_app/features/category_detail/data/models/recipe_model.dar
 import 'package:recipe_app/features/review/data/models/review_comment_model.dart';
 import 'package:recipe_app/features/review/data/repositories/review_repository.dart' as client;
 
-import '../../../review/data/models/review_model.dart';
+import '../../../review/data/models/review_user_model.dart';
 
 class ReviewsRepository {
   ReviewsRepository({required this.client});
 
   final ApiClient client;
-  ReviewModel? reviewModel;
+  Review_user_Model? reviewModel;
   Map<int, List<RecipeModel>> recipesByCategory = {};
   List<ReviewCommentModel> comment=[];
 
 
-  Future<ReviewModel> fetchRecipeForReviews(int recipeId) async {
+  Future<Review_user_Model> fetchRecipeForReviews(int recipeId) async {
     var rawRecipe = await client.fetchReview(recipeId);
-    reviewModel = ReviewModel.fromJson(rawRecipe);
+    reviewModel = Review_user_Model.fromJson(rawRecipe);
     return reviewModel!;
   }
   Future<List<ReviewCommentModel>>fetchRecipeCommentReviews(int recipeId )async{

@@ -22,13 +22,14 @@ import '../features/catigories/presentation/widgets/categoties_view.dart';
 import '../features/recipe_detail/data/models/recipe_detail_view_model.dart';
 import '../features/recipe_detail/data/repositories/recipe_repository.dart';
 import '../features/review/presentation/widgets/review_view.dart';
+import '../features/trending_recipes/pages/trending_recipes_view.dart';
 import 'client.dart';
 
 final apiClient = ApiClient();
 
 GoRouter router = GoRouter(
-  initialLocation:
-  Routes.getReview(2),
+  initialLocation: '/trending_recipes',
+  // Routes.getReview(2),
   routes: [
     GoRoute(path: '/login', builder: (context, state) => LoginView()),
     GoRoute(path: '/signUp', builder: (context, state) => SignUpView()),
@@ -54,11 +55,11 @@ GoRouter router = GoRouter(
         child: ReviewView(),
       ),
     ),
-    GoRoute(
-        path: Routes.createReview,
-        builder: (context, state) => BlocProvider(
-            create: (context) => CreateReviewBloc(recipeRepo: context.read()),
-            child: CreateReviewView())),
+    // GoRoute(
+    //     path: Routes.createReview,
+    //     builder: (context, state) => BlocProvider(
+    //         create: (context) => CreateReviewBloc(recipeRepo: context.read()),
+    //         child: CreateReviewView())),
 
     GoRoute(
       path: '/home',
@@ -85,6 +86,7 @@ GoRouter router = GoRouter(
         child: RecipeCommunityView(),
       ),
     ),
+    GoRoute(path: '/trending_recipes',builder: (context,state)=> TrendingRecipesView()),
 
     GoRoute(
       path: '/recipe-detail/:recipeId',

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:recipe_app/core/utils/colors.dart';
 import 'package:recipe_app/features/catigories/presentation/widgets/categories_app_bar.dart';
-import 'package:recipe_app/features/review/data/models/review_model.dart';
+import 'package:recipe_app/features/review/data/models/review_user_model.dart';
 import '../manager/reviews/review_bloc.dart';
 import '../manager/reviews/review_state.dart';
 class ReviewRecipe extends StatelessWidget {
@@ -13,7 +13,7 @@ class ReviewRecipe extends StatelessWidget {
     required this.recipe,
   });
 
-  final ReviewModel recipe;
+  final Review_user_Model recipe;
 
   @override
   Widget build(BuildContext context) {

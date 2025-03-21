@@ -28,6 +28,7 @@ void main() {
 class RecipeApp  extends StatelessWidget {
   const RecipeApp({super.key});
 
+  @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: Size(430, 932));
     return Consumer<LocalizationViewModel>(
